@@ -5,14 +5,130 @@ const getState = ({ getStore, getActions, setStore }) => {
 				{
 					title: "FIRST",
 					background: "white",
-					initial: "white"
+					initial: "white",
+					id: "1"
 				},
 				{
 					title: "SECOND",
 					background: "white",
-					initial: "white"
-				}
-			]
+					initial: "white",
+					id: "2"
+				},
+				{
+					title: "FIRST",
+					background: "white",
+					initial: "white",
+					id: "3"
+				},
+				{
+					title: "SECOND",
+					background: "white",
+					initial: "white",
+					id: "4"
+				},
+				{
+					title: "FIRST",
+					background: "white",
+					initial: "white",
+					id: "5"
+				},
+			],
+			planets: [{
+				title: "FIRST",
+				background: "white",
+				initial: "white",
+				id: "1"
+			},
+			{
+				title: "SECOND",
+				background: "white",
+				initial: "white",
+				id: "2"
+			},
+			{
+				title: "FIRST",
+				background: "white",
+				initial: "white",
+				id: "3"
+			},
+			{
+				title: "SECOND",
+				background: "white",
+				initial: "white",
+				id: "4"
+			},
+			{
+				title: "FIRST",
+				background: "white",
+				initial: "white",
+				id: "5"
+			},
+
+			],
+			vehicles: [{
+				title: "FIRST",
+				background: "white",
+				initial: "white",
+				id: "1"
+			},
+			{
+				title: "SECOND",
+				background: "white",
+				initial: "white",
+				id: "2"
+			},
+			{
+				title: "FIRST",
+				background: "white",
+				initial: "white",
+				id: "3"
+			},
+			{
+				title: "SECOND",
+				background: "white",
+				initial: "white",
+				id: "4"
+			},
+			{
+				title: "FIRST",
+				background: "white",
+				initial: "white",
+				id: "5"
+			},
+
+			],
+			favorites: [{
+				title: "FIRST",
+				background: "white",
+				initial: "white",
+				id: "1"
+			},
+			{
+				title: "SECOND",
+				background: "white",
+				initial: "white",
+				id: "2"
+			},
+			{
+				title: "FIRST",
+				background: "white",
+				initial: "white",
+				id: "3"
+			},
+			{
+				title: "SECOND",
+				background: "white",
+				initial: "white",
+				id: "4"
+			},
+			{
+				title: "FIRST",
+				background: "white",
+				initial: "white",
+				id: "5"
+			},
+
+			],
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
