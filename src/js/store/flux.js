@@ -33,6 +33,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				return fetch(`https://www.swapi.tech/api/planets/${uid}`)
 					.then(res => res.json())
 					.then(data => {
+						console.log(data);
 						const { planets } = getStore();
 						const updatedPlanetsList = planets.filter((item) => item.uid !== uid);
 						setStore({ planets: updatedPlanetsList });
