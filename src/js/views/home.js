@@ -8,7 +8,7 @@ export const Home = () => {
 	return (
 		<div className="listHome mt-5">
 			<div>Character:</div>
-			<CardCarousel dataType="demo" />
+			<CardCarousel dataType="characters" />
 			<div>Planets:</div>
 			<CardCarousel dataType="planets" />
 			<div>Vehicles:</div>

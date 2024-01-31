@@ -3,6 +3,7 @@ import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 import "../../styles/navbar.css";
 
+
 export const Navbar = () => {
 	const { store, actions } = useContext(Context);
 

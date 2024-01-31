@@ -1,161 +1,45 @@
+
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			demo: [
-				{
-					title: "FIRST",
-					background: "white",
-					initial: "white",
-					id: "1"
-				},
-				{
-					title: "SECOND",
-					background: "white",
-					initial: "white",
-					id: "2"
-				},
-				{
-					title: "FIRST",
-					background: "white",
-					initial: "white",
-					id: "3"
-				},
-				{
-					title: "SECOND",
-					background: "white",
-					initial: "white",
-					id: "4"
-				},
-				{
-					title: "FIRST",
-					background: "white",
-					initial: "white",
-					id: "5"
-				},
-			],
-			planets: [{
-				title: "FIRST",
-				background: "white",
-				initial: "white",
-				id: "1"
-			},
-			{
-				title: "SECOND",
-				background: "white",
-				initial: "white",
-				id: "2"
-			},
-			{
-				title: "FIRST",
-				background: "white",
-				initial: "white",
-				id: "3"
-			},
-			{
-				title: "SECOND",
-				background: "white",
-				initial: "white",
-				id: "4"
-			},
-			{
-				title: "FIRST",
-				background: "white",
-				initial: "white",
-				id: "5"
-			},
-
-			],
-			vehicles: [{
-				title: "FIRST",
-				background: "white",
-				initial: "white",
-				id: "1"
-			},
-			{
-				title: "SECOND",
-				background: "white",
-				initial: "white",
-				id: "2"
-			},
-			{
-				title: "FIRST",
-				background: "white",
-				initial: "white",
-				id: "3"
-			},
-			{
-				title: "SECOND",
-				background: "white",
-				initial: "white",
-				id: "4"
-			},
-			{
-				title: "FIRST",
-				background: "white",
-				initial: "white",
-				id: "5"
-			},
-
-			],
-			favorites: [{
-				title: "FIRST",
-				background: "white",
-				initial: "white",
-				id: "1"
-			},
-			{
-				title: "SECOND",
-				background: "white",
-				initial: "white",
-				id: "2"
-			},
-			{
-				title: "FIRST",
-				background: "white",
-				initial: "white",
-				id: "3"
-			},
-			{
-				title: "SECOND",
-				background: "white",
-				initial: "white",
-				id: "4"
-			},
-			{
-				title: "FIRST",
-				background: "white",
-				initial: "white",
-				id: "5"
-			},
-
-			],
+			characters: [],
+			planets: [],
+			vehicles: [],
+			favorites: [],
 		},
 		actions: {
-			// Use getActions to call a function within a fuction
-			exampleFunction: () => {
-				getActions().changeColor(0, "green");
+			loadCharacter: () => {
+				return fetch("https://www.swapi.tech/api/people")
+					.then(res => res.json())
+					.then(data => {
+						setStore({ characters: data.results });
+					})
 			},
-			loadSomeData: () => {
-				/**
-					fetch().then().then(data => setStore({ "foo": data.bar }))
-				*/
+			loadPlanets: () => {
+				return fetch("https://www.swapi.tech/api/planets")
+					.then(res => res.json())
+					.then(data => {
+						setStore({ planets: data.results });
+					})
 			},
-			changeColor: (index, color) => {
-				//get the store
-				const store = getStore();
-
-				//we have to loop the entire demo array to look for the respective index
-				//and change its color
-				const demo = store.demo.map((elm, i) => {
-					if (i === index) elm.background = color;
-					return elm;
-				});
-
-				//reset the global store
-				setStore({ demo: demo });
-			}
+			loadVehicles: () => {
+				return fetch("https://www.swapi.tech/api/vehicles")
+					.then(res => res.json())
+					.then(data => {
+						setStore({ vehicles: data.results });
+					})
+			},
+			loadDetailsPlanets: (uid) => {
+				return fetch(`https://www.swapi.tech/api/planets/${uid}`)
+					.then(res => res.json())
+					.then(data => {
+						const { planets } = getStore();
+						const updatedPlanetsList = planets.filter((item) => item.uid !== uid);
+						setStore({ planets: updatedPlanetsList });
+					})
+			},
 		}
-	};
+	}
 };
 
 export default getState;
