@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 
-export const CardCharacters = ({ uid, name }) => {
+export const CardCharacters = ({ uid, name, dataType }) => {
     const { store, actions } = useContext(Context);
     const [charactersDetails, setCharactersDetails] = useState(null);
 
@@ -34,7 +34,7 @@ export const CardCharacters = ({ uid, name }) => {
                         </div>
                     )}
                     <div className="buttonsCard d-flex justify-content-between">
-                        <Link to={`/details/${uid}`} className="btn btn-outline-primary">Learn More</Link>
+                        <Link to={`/details/${dataType}/${uid}`} className="btn btn-outline-primary">Learn More</Link>
                         <button onClick={handleFavorites} type="button" className="btn btn-outline-warning"><i className="fa-regular fa-heart fa-beat"></i></button>
                     </div>
                 </div>

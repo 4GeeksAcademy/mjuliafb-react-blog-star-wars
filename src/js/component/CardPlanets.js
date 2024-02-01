@@ -3,8 +3,8 @@ import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 import defaultPicture from "../../img/picture-not-available.jpeg";
 
-export const CardPlanets = ({ uid, name }) => {
-    const { actions } = useContext(Context);
+export const CardPlanets = ({ uid, name, dataType }) => {
+    const { store, actions } = useContext(Context);
     const [planetDetails, setPlanetDetails] = useState(null);
 
     useEffect(() => {
@@ -15,6 +15,10 @@ export const CardPlanets = ({ uid, name }) => {
             actions.loadDetailsPlanets(uid);
         }
     }, [uid]);
+
+    const handleFavorites = () => {
+        actions.addFavorites(name);
+    }
 
     return (
 
@@ -35,8 +39,8 @@ export const CardPlanets = ({ uid, name }) => {
                         </div>
                     )}
                     <div className="buttonsCard d-flex justify-content-between">
-                        <Link to={`/details/${uid}`} className="btn btn-outline-primary">Learn More</Link>
-                        <button type="button" className="btn btn-outline-warning"><i className="fa-regular fa-heart fa-beat"></i></button>
+                        <Link to={`/details/${dataType}/${uid}`} className="btn btn-outline-primary">Learn More</Link>
+                        <button onClick={handleFavorites} type="button" className="btn btn-outline-warning"><i className="fa-regular fa-heart fa-beat"></i></button>
                     </div>
                 </div>
             </div>

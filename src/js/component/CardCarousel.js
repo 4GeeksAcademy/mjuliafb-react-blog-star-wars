@@ -19,7 +19,7 @@ export const CardCarousel = ({ dataType }) => {
     return (
         <div className="row d-flex flex-nowrap overflow-auto">
             {dataToDisplay.map((item, index) => (
-                <CardComponent key={item.uid} uid={item.uid} name={item.name} />
+                <CardComponent key={item.uid} uid={item.uid} name={item.name} dataType={dataType} />
             ))}
         </div>
     );

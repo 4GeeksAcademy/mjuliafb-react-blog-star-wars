@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 
-export const CardVehicle = ({ uid, name }) => {
+export const CardVehicle = ({ uid, name, dataType }) => {
     const { actions } = useContext(Context);
     const [vehicleDetails, setVehicleDetails] = useState(null);
 
@@ -14,6 +14,10 @@ export const CardVehicle = ({ uid, name }) => {
             actions.loadDetailsVehicles(uid);
         }
     }, [uid]);
+
+    const handleFavorites = () => {
+        actions.addFavorites(name);
+    }
 
     return (
 
@@ -30,8 +34,8 @@ export const CardVehicle = ({ uid, name }) => {
                         </div>
                     )}
                     <div className="buttonsCard d-flex justify-content-between">
-                        <Link to={`/details/${uid}`} className="btn btn-outline-primary">Learn More</Link>
-                        <button type="button" className="btn btn-outline-warning"><i className="fa-regular fa-heart fa-beat"></i></button>
+                        <Link to={`/details/${dataType}/${uid}`} className="btn btn-outline-primary">Learn More</Link>
+                        <button onClick={handleFavorites} type="button" className="btn btn-outline-warning"><i className="fa-regular fa-heart fa-beat"></i></button>
                     </div>
                 </div>
             </div>

@@ -29,6 +29,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 						setStore({ vehicles: data.results });
 					})
 			},
+			loadFavorites: () => {
+				const favoritesFromStorage = JSON.parse(localStorage.getItem("favorites")) || [];
+				setStore({ favorites: favoritesFromStorage });
+			},
 			loadDetailsPlanets: (uid) => {
 				return fetch(`https://www.swapi.tech/api/planets/${uid}`)
 					.then(res => res.json())
@@ -66,12 +70,23 @@ const getState = ({ getStore, getActions, setStore }) => {
 				if (!isDuplicate) {
 					const updatedFavorites = [...favorites, name];
 					setStore({ favorites: updatedFavorites });
+					localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
 				} else {
 					alert("Ya ha sido agregado a favoritos");
 				}
-			}
+			},
+
+			deleteFavorite: (index) => {
+				const { favorites } = getStore();
+				const updatedFavorites = [...favorites];
+				updatedFavorites.splice(index, 1);
+				setStore({ favorites: updatedFavorites });
+				localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
+			},
+
 		}
 	}
+
 };
 
 export default getState;
