@@ -3,6 +3,7 @@ import { Context } from "../store/appContext";
 import { CardPlanets } from "./CardPlanets";
 import { CardVehicle } from "./CardVehicle";
 import { CardCharacters } from "./CardCharacters";
+import "../../styles/cardCarousel.css";
 
 export const CardCarousel = ({ dataType }) => {
     const { store, actions } = useContext(Context);
@@ -17,7 +18,7 @@ export const CardCarousel = ({ dataType }) => {
                 : null;
 
     return (
-        <div className="row d-flex flex-nowrap overflow-auto">
+        <div className="carousels row d-flex flex-nowrap overflow-auto">
             {dataToDisplay.map((item, index) => (
                 <CardComponent key={item.uid} uid={item.uid} name={item.name} dataType={dataType} />
             ))}

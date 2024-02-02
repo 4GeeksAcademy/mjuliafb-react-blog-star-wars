@@ -14,7 +14,6 @@ export const Navbar = () => {
 	const handleDeleteFavorite = (index) => {
 		actions.deleteFavorite(index);
 	};
-	console.log(store.favorites)
 	useEffect(() => {
 		actions.loadFavorites()
 	}, []);
@@ -47,14 +46,20 @@ export const Navbar = () => {
 					<span className="favoriteCounter bg-dark text-white">{favoriteCount}</span>
 				</button>
 				<ul className={showDropdown ? "dropdown-menu show" : "dropdown-menu"}>
-					{favorites.map((favorite, index) => (
-						<li key={index}>
-							<a className="dropdown-item" href="#">
-								{favorite}
-							</a>
-							<i className="fa-solid fa-trash-can" onClick={() => handleDeleteFavorite(index)}></i>
+					{showDropdown ? (
+						favorites.map((favorite, index) => (
+							<li key={index}>
+								<a className="dropdown-item" href="#">
+									{favorite}<i className="fa-solid fa-trash-can" onClick={() => handleDeleteFavorite(index)}></i>
+								</a>
+
+							</li>
+						))
+					) : (
+						<li>
+							<span className="dropdown-item text-center">"(Empty)"</span>
 						</li>
-					))}
+					)}
 				</ul>
 			</div>
 		</nav>

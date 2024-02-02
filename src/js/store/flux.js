@@ -64,15 +64,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 					});
 			},
 			addFavorites: (name) => {
-				const { favorites } = getStore();
-				const isDuplicate = favorites.find(favorite => favorite.name === name);
-
-				if (!isDuplicate) {
-					const updatedFavorites = [...favorites, name];
+				let store = getStore();
+				if (!store.favorites.includes(name)) {
+					const updatedFavorites = [...store.favorites, name];
 					setStore({ favorites: updatedFavorites });
 					localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
 				} else {
-					alert("Ya ha sido agregado a favoritos");
+					alert("Ya ha sido agregado a favoritos")
 				}
 			},
 

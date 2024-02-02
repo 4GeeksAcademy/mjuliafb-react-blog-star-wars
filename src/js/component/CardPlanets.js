@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 import defaultPicture from "../../img/picture-not-available.jpeg";
+import "../../styles/cardComponent.css";
 
 export const CardPlanets = ({ uid, name, dataType }) => {
     const { store, actions } = useContext(Context);
@@ -16,10 +17,6 @@ export const CardPlanets = ({ uid, name, dataType }) => {
         }
     }, [uid]);
 
-    const handleFavorites = () => {
-        actions.addFavorites(name);
-    }
-
     return (
 
         <div key={uid} className="col contactList d-flex">
@@ -32,15 +29,15 @@ export const CardPlanets = ({ uid, name, dataType }) => {
                 <div className="card-body">
                     <h5 className="card-title">{name}</h5>
                     {planetDetails && planetDetails.result && (
-                        <div>
-                            <p className="card-text"> Terrain: {planetDetails.result.properties.terrain} </p>
-                            <p className="card-text"> Population: {planetDetails.result.properties.population}</p>
-                            <p className="card-text">Climate: {planetDetails.result.properties.climate} </p>
+                        <div className="cardDetails">
+                            <p className="card-text fs-6 fw-light"> Terrain: {planetDetails.result.properties.terrain} </p>
+                            <p className="card-text fs-6 fw-light"> Population: {planetDetails.result.properties.population}</p>
+                            <p className="card-text fs-6 fw-light">Climate: {planetDetails.result.properties.climate} </p>
                         </div>
                     )}
                     <div className="buttonsCard d-flex justify-content-between">
                         <Link to={`/details/${dataType}/${uid}`} className="btn btn-outline-primary">Learn More</Link>
-                        <button onClick={handleFavorites} type="button" className="btn btn-outline-warning"><i className="fa-regular fa-heart fa-beat"></i></button>
+                        <button onClick={() => { actions.addFavorites(name) }} type="button" className="btn btn-outline-warning"><i className="fa-regular fa-heart fa-beat"></i></button>
                     </div>
                 </div>
             </div>
